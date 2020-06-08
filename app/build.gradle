@@ -37,3 +37,14 @@ dependencies {
 
     api 'androidx.recyclerview:recyclerview:1.1.0'
 }
+
+/*
+class JYTPlugin implements Plugin<Project> {
+    void apply(Project project) {
+        println("========================");
+        println("hello JY Test plugin!");
+        println("========================");
+    }
+}
+
+apply plugin: JYTPlugin*/

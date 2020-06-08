@@ -1,4 +1,4 @@
-package com.hanhaiwang.androidutils.utils.systembar;
+package com.hanhaiwang.androidutil.utils.systembar;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;

@@ -1,4 +1,4 @@
-package com.hanhaiwang.androidutils.utils.systembar;
+package com.hanhaiwang.androidutil.utils.systembar;
 
 import android.os.Build;
 import android.text.TextUtils;

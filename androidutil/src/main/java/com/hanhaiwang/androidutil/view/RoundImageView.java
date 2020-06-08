@@ -1,4 +1,4 @@
-package com.hanhaiwang.androidutils.view;
+package com.hanhaiwang.androidutil.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;

@@ -1,4 +1,4 @@
-package com.hanhaiwang.androidutils.utils;
+package com.hanhaiwang.androidutil.utils;
 
 import android.app.Activity;
 import android.graphics.Rect;

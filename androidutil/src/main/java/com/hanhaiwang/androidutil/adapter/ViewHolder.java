@@ -1,4 +1,4 @@
-package com.hanhaiwang.androidutils.adapter;
+package com.hanhaiwang.androidutil.adapter;
 
 import android.content.Context;
 import android.util.SparseArray;

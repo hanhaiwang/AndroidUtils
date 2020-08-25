@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".CountNumberActivity">
+
+    <!--使用方法，在XML里声明后（可以完全当成TextView来使用）-->
+    <com.hanhaiwang.androidutil.widget.CountNumberView
+        android:id="@+id/mTvCountNum1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="999999"
+        android:textSize="24sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="150dp"/>
+
+    <com.hanhaiwang.androidutil.widget.CountNumberView
+        android:id="@+id/mTvCountNum2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="999999"
+        android:textSize="24sp"/>
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.hanhaiwang.androidutil.view;
+package com.hanhaiwang.androidutil.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -21,17 +21,17 @@ import androidx.appcompat.widget.AppCompatImageView;
  * Time: 11:57
  * Author: Bin
  **/
-public class RoundImageView extends AppCompatImageView {
+public class CircleImageView extends AppCompatImageView {
 
-    public RoundImageView(Context context) {
+    public CircleImageView(Context context) {
         super(context);
     }
 
-    public RoundImageView(Context context, AttributeSet attrs) {
+    public CircleImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public RoundImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CircleImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

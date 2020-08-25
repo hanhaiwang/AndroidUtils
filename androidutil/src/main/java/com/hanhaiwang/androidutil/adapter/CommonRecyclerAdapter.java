@@ -7,50 +7,115 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hanhaiwang.androidutil.R;
+
 import java.util.List;
 
 /**
- * Description: 通用的Adapter
+ * RecyclerView通用Adapter
  */
-public abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
+public abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerHolder> {
 
-    protected Context mContext;
-    protected LayoutInflater mInflater;
-    //数据怎么办？利用泛型
-    protected List<T> mDatas;
-    // 布局怎么办？直接从构造里面传递
-    private int mLayoutId;
+    private Context context;//上下文
+    private List<T> list;//数据源
+    private LayoutInflater inflater;//布局器
+    private int itemLayoutId;//布局id
+    private OnItemClickListener listener;//点击事件监听器
+    private OnItemLongClickListener longClickListener;//长按监听器
+    private RecyclerView recyclerView;
 
-    public CommonRecyclerAdapter(Context context, List<T> datas, int layoutId) {
-        this.mContext = context;
-        this.mInflater = LayoutInflater.from(mContext);
-        this.mDatas = datas;
-        this.mLayoutId = layoutId;
+    //在RecyclerView提供数据的时候调用
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        this.recyclerView = recyclerView;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // 先inflate数据
-        View itemView = mInflater.inflate(mLayoutId, parent, false);
-        // 返回ViewHolder
-        ViewHolder holder = new ViewHolder(itemView);
-        return holder;
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        // 绑定怎么办？回传出去
-        convert(holder, mDatas.get(position));
+    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView);
+        this.recyclerView = null;
     }
 
     /**
-     * 利用抽象方法回传出去，每个不一样的Adapter去设置
-     * @param item 当前的数据
+     * 定义一个点击事件接口回调
      */
-    public abstract void convert(ViewHolder holder, T item);
+    public interface OnItemClickListener {
+        void onItemClick(RecyclerView parent, View view, int position);
+    }
+
+    public interface OnItemLongClickListener {
+        boolean onItemLongClick(RecyclerView parent, View view, int position);
+    }
+
+    public CommonRecyclerAdapter(Context context, int itemLayoutId, List<T> list) {
+        this.context = context;
+        this.list = list;
+        this.itemLayoutId = itemLayoutId;
+        inflater = LayoutInflater.from(context);
+    }
+
+    /**
+     * 多布局如何适配
+     * @param parent
+     * @param viewType
+     * @return
+     */
+    @Override
+    public RecyclerHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = inflater.inflate(itemLayoutId, parent, false);
+        return RecyclerHolder.getRecyclerHolder(context, view);
+    }
+
+
+    @Override
+    public void onBindViewHolder(final RecyclerHolder holder, int position) {
+
+        if (listener != null) {
+           // holder.itemView.setBackgroundResource(R.drawable.ic_launcher);//设置背景
+        }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (listener != null && view != null && recyclerView != null) {
+                    int position = recyclerView.getChildAdapterPosition(view);
+                    listener.onItemClick(recyclerView, view, position);
+                }
+            }
+        });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if (longClickListener != null && view != null && recyclerView != null) {
+                    int position = recyclerView.getChildAdapterPosition(view);
+                    longClickListener.onItemLongClick(recyclerView, view, position);
+                    return true;
+                }
+                return false;
+            }
+        });
+        convert(holder, list.get(position), position);
+    }
 
     @Override
     public int getItemCount() {
-        return mDatas.size();
+        return list == null ? 0 : list.size();
     }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener longClickListener) {
+        this.longClickListener = longClickListener;
+    }
+
+    /**
+     * 填充RecyclerView适配器的方法，子类需要重写
+     *
+     * @param holder      ViewHolder
+     * @param item        子项
+     * @param position    位置
+     */
+    public abstract void convert(RecyclerHolder holder, T item, int position);
 }

@@ -18,6 +18,7 @@ public class SoftHideKeyBoardUtil {
     private int usableHeightPrevious;
     private FrameLayout.LayoutParams frameLayoutParams;
 
+    //@Deprecated
     private SoftHideKeyBoardUtil(Activity activity) {
         //1.找到Activity的最外层布局控件，它其实是一具DecorView，它所用的控件就是FramLayout
         FrameLayout content = activity.findViewById(android.R.id.content);

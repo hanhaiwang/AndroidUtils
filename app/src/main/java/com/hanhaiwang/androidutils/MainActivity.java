@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.hanhaiwang.androidutil.adapter.CommonRecyclerAdapter;
+import com.hanhaiwang.androidutil.adapter.RecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
         MyAdapter adapter = new MyAdapter(this,R.layout.item_recyclerview,list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(new CommonRecyclerAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(RecyclerView parent, View view, int position) {
                 Toast.makeText(MainActivity.this,"点击事件"+position,Toast.LENGTH_SHORT).show();
             }
         });
-        adapter.setOnItemLongClickListener(new CommonRecyclerAdapter.OnItemLongClickListener() {
+        adapter.setOnItemLongClickListener(new RecyclerAdapter.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(RecyclerView parent, View view, int position) {
                 Toast.makeText(MainActivity.this,"长按事件"+position,Toast.LENGTH_SHORT).show();

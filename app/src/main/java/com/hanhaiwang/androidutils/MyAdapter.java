@@ -2,18 +2,16 @@ package com.hanhaiwang.androidutils;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.hanhaiwang.androidutil.adapter.RecyclerHolder;
-import com.hanhaiwang.androidutil.adapter.CommonRecyclerAdapter;
+import com.hanhaiwang.androidutil.adapter.RecyclerAdapter;
 
 import java.util.List;
 
 /**
  * 自定义自已的适配器并继承CommonRecyclerAdapter<T>
  */
-public class MyAdapter extends CommonRecyclerAdapter<DataBean> {
+public class MyAdapter extends RecyclerAdapter<DataBean> {
 
     public MyAdapter(Context context, int itemLayoutId, List<DataBean> list) {
         super(context, itemLayoutId, list);

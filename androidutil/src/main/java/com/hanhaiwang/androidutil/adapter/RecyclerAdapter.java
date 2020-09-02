@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * RecyclerView通用Adapter
  */
-public abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerHolder> {
+public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerHolder> {
 
     private Context context;//上下文
     private List<T> list;//数据源
@@ -48,7 +48,7 @@ public abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter<Recy
         boolean onItemLongClick(RecyclerView parent, View view, int position);
     }
 
-    public CommonRecyclerAdapter(Context context, int itemLayoutId, List<T> list) {
+    public RecyclerAdapter(Context context, int itemLayoutId, List<T> list) {
         this.context = context;
         this.list = list;
         this.itemLayoutId = itemLayoutId;

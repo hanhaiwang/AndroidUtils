@@ -31,8 +31,7 @@ public class SPUtil {
         put(context, FILE_NAME, key, object);
     }*/
     public static void put(Context context, String spFileName, String key, Object object) {
-        SharedPreferences sp = context.getSharedPreferences(spFileName,
-                Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(spFileName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
 
         if (object instanceof String) {
@@ -53,8 +52,7 @@ public class SPUtil {
     }
 
     public static void putString(Context context, String spFileName, String key, String stringData) {
-        SharedPreferences sp = context.getSharedPreferences(spFileName,
-                Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(spFileName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(key, stringData);
         editor.commit();
@@ -68,9 +66,7 @@ public class SPUtil {
         return get(context, FILE_NAME, key, defaultObject);
     }*/
     public static Object get(Context context, String spName, String key, Object defaultObject) {
-        SharedPreferences sp = context.getSharedPreferences(spName,
-                Context.MODE_PRIVATE);
-
+        SharedPreferences sp = context.getSharedPreferences(spName, Context.MODE_PRIVATE);
         if (defaultObject instanceof String) {
             return sp.getString(key, (String) defaultObject);
         } else if (defaultObject instanceof Integer) {
@@ -82,13 +78,11 @@ public class SPUtil {
         } else if (defaultObject instanceof Long) {
             return sp.getLong(key, (Long) defaultObject);
         }
-
         return null;
     }
 
     public static String getString(Context context, String spName, String key, String stringDataDefault) {
-        SharedPreferences sp = context.getSharedPreferences(spName,
-                Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(spName, Context.MODE_PRIVATE);
         return sp.getString(key, stringDataDefault);
     }
 
@@ -99,8 +93,7 @@ public class SPUtil {
         remove(context, FILE_NAME, key);
     }*/
     public static void remove(Context context, String spFileName, String key) {
-        SharedPreferences sp = context.getSharedPreferences(spFileName,
-                Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(spFileName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.remove(key);
         SharedPreferencesCompat.apply(editor);
@@ -137,8 +130,7 @@ public class SPUtil {
         return getAll(context, FILE_NAME);
     }*/
     public static Map<String, ?> getAll(Context context, String spName) {
-        SharedPreferences sp = context.getSharedPreferences(spName,
-                Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(spName, Context.MODE_PRIVATE);
         return sp.getAll();
     }
 
@@ -171,9 +163,9 @@ public class SPUtil {
                     sApplyMethod.invoke(editor);
                     return;
                 }
-            } catch (IllegalArgumentException e) {
-            } catch (IllegalAccessException e) {
-            } catch (InvocationTargetException e) {
+            } catch (IllegalArgumentException ignored) {
+            } catch (IllegalAccessException ignored) {
+            } catch (InvocationTargetException ignored) {
             }
             editor.commit();
         }

@@ -31,11 +31,17 @@ public class JustifyTextView extends TextView {
     protected void onDraw(Canvas canvas) {
         TextPaint paint = getPaint();
         paint.setColor(getCurrentTextColor());
+        // 返回绘制状态的资源ID数组表示视图的当前状态
         paint.drawableState = getDrawableState();
+        // 对View上的内容进行测量后得到的View内容占据的宽度
+        // 前提是你必须在父布局的onLayout()方法或者此View的onDraw()方法里调用measure(0,0);
+        // 否则你得到的结果和getWidth()得到的结果一样。
         mViewWidth = getMeasuredWidth();
+        // 获取文本
         String text = getText().toString();
         mLineY = 0;
         mLineY += getTextSize();
+        // 获取用于显示当前文本的布局
         Layout layout = getLayout();
 
         // layout.getLayout()在4.4.3出现NullPointerException
@@ -46,14 +52,14 @@ public class JustifyTextView extends TextView {
         Paint.FontMetrics fm = paint.getFontMetrics();
 
         int textHeight = (int) (Math.ceil(fm.descent - fm.ascent));
-        textHeight = (int) (textHeight * layout.getSpacingMultiplier() + layout
-                .getSpacingAdd());
+        textHeight = (int) (textHeight * layout.getSpacingMultiplier() + layout.getSpacingAdd());
         //解决了最后一行文字间距过大的问题
         for (int i = 0; i < layout.getLineCount(); i++) {
+            // 返回文本中的指定行开头的偏移
             int lineStart = layout.getLineStart(i);
+            // 返回文本中的指定行最后一个字符的偏移
             int lineEnd = layout.getLineEnd(i);
-            float width = StaticLayout.getDesiredWidth(text, lineStart,
-                    lineEnd, getPaint());
+            float width = StaticLayout.getDesiredWidth(text, lineStart, lineEnd, getPaint());
             String line = text.substring(lineStart, lineEnd);
 
             if (i < layout.getLineCount() - 1) {
@@ -100,8 +106,7 @@ public class JustifyTextView extends TextView {
     }
 
     private boolean isFirstLineOfParagraph(int lineStart, String line) {
-        return line.length() > 3 && line.charAt(0) == ' '
-                && line.charAt(1) == ' ';
+        return line.length() > 3 && line.charAt(0) == ' ' && line.charAt(1) == ' ';
     }
 
     private boolean needScale(String line) {

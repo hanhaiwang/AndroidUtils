@@ -1,4 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--AnimShopButton属性-->
+    <declare-styleable name="AnimShopButton">
+        <attr name="isAddFillMode" format="boolean" />
+        <attr name="addEnableBgColor" format="color" />
+        <attr name="addEnableFgColor" format="color" />
+        <attr name="addDisableBgColor" format="color" />
+        <attr name="addDisableFgColor" format="color" />
+        <attr name="isDelFillMode" format="boolean" />
+        <attr name="delEnableBgColor" format="color" />
+        <attr name="delEnableFgColor" format="color" />
+        <attr name="delDisableBgColor" format="color" />
+        <attr name="delDisableFgColor" format="color" />
+        <attr name="radius" format="dimension" />
+        <attr name="circleStrokeWidth" format="dimension" />
+        <attr name="lineWidth" format="dimension" />
+        <attr name="gapBetweenCircle" format="dimension" />
+        <attr name="numTextSize" format="dimension" />
+        <attr name="maxCount" format="integer" />
+        <attr name="count" format="integer" />
+        <attr name="ignoreHintArea" format="boolean" />
+        <attr name="hintText" format="string" />
+        <attr name="hintBgColor" format="color" />
+        <attr name="hintFgColor" format="color" />
+        <attr name="hingTextSize" format="dimension" />
+        <attr name="hintBgRoundValue" format="dimension" />
+        <attr name="perAnimDuration" format="integer" />
+        <attr name="replenishTextColor" format="color" />
+        <attr name="replenishTextSize" format="dimension" />
+        <attr name="replenishText" format="string" />
+    </declare-styleable>
+
 
 </resources>

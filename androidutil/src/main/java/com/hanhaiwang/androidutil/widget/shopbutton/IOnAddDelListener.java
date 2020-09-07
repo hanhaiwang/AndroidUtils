@@ -1,19 +1,19 @@
 package com.hanhaiwang.androidutil.widget.shopbutton;
 
+/**
+ * 加减View的接口
+ */
+
 public interface IOnAddDelListener {
-    void onAddSuccess(int var1);
-
-    void onAddFailed(int var1, IOnAddDelListener.FailType var2);
-
-    void onDelSuccess(int var1);
-
-    void onDelFaild(int var1, IOnAddDelListener.FailType var2);
-
-    public static enum FailType {
-        COUNT_MAX,
-        COUNT_MIN;
-
-        private FailType() {
-        }
+    enum FailType {
+        COUNT_MAX, COUNT_MIN
     }
+
+    void onAddSuccess(int count);
+
+    void onAddFailed(int count, FailType failType);
+
+    void onDelSuccess(int count);
+
+    void onDelFaild(int count, FailType failType);
 }
